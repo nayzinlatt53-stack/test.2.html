@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html lang="my">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Love Postcard 💗</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffc6dc, #ffe6f0, #ffb6d0);
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+.card {
+  width: 90%;
+  max-width: 380px;
+  min-height: 570px;
+  background: #fffafd;
+  border: 5px solid white;
+  border-radius: 30px;
+  box-shadow: 0 10px 35px #d66b9b55;
+  text-align: center;
+  padding: 25px 18px;
+  position: relative;
+  z-index: 2;
+}
+
+h1 {
+  color: #f05291;
+  font-size: 27px;
+}
+
+.bear {
+  font-size: 85px;
+  margin: 15px;
+  animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+  50% { transform: translateY(-12px); }
+}
+
+.message {
+  background: #ffe1ed;
+  border-radius: 20px;
+  padding: 13px;
+  margin: 13px 0;
+  color: #b93e73;
+  opacity: 0;
+  transform: translateY(15px);
+}
+
+.show {
+  animation: appear 1s forwards;
+}
+
+@keyframes appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+button {
+  background: #f45b9a;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  padding: 13px 22px;
+  font-size: 16px;
+  margin-top: 15px;
+}
+
+.heart {
+  position: fixed;
+  bottom: -30px;
+  animation: fly 5s linear forwards;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes fly {
+  to {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.footer {
+  color: #ed6b9d;
+  font-size: 13px;
+  margin-top: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>💕 For You 💕</h1>
+
+  <div class="bear">🧸💗</div>
+
+  <h3 style="color:#e85b91">
+    My Special Person 🌷
+  </h3>
+
+  <div class="message" id="m1">
+    မင်းကို တွေ့ခဲ့ရတာ ကံကောင်းခြင်းလေးပါ 💖
+  </div>
+
+  <div class="message" id="m2">
+    မင်းရဲ့ အပြုံးလေးက ကိုယ့်အတွက် အလှဆုံးပါ 🥰
+  </div>
+
+  <div class="message" id="m3">
+    ဘယ်အချိန်မဆို မင်းဘေးမှာ ရှိနေချင်တယ် 💗
+  </div>
+
+  <button onclick="openCard()">
+    Open My Heart 💌
+  </button>
+
+  <div class="footer">
+    Made with Love ❤️
+  </div>
+</div>
+
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function openCard() {
+
+  document.getElementById("m1")
+    .classList.add("show");
+
+  setTimeout(() => {
+    document.getElementById("m2")
+      .classList.add("show");
+  }, 1000);
+
+  setTimeout(() => {
+    document.getElementById("m3")
+      .classList.add("show");
+  }, 2000);
+
+  const music = document.getElementById("music");
+  music.play().catch(() => {});
+
+  for (let i = 0; i < 20; i++) {
+    setTimeout(createHeart, i * 150);
+  }
+}
+
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.className = "heart";
+  heart.innerHTML = ["💗","💕","❤️","💖"][Math.floor(Math.random()*4)];
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.fontSize = (20 + Math.random()*20) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
+}
+
+setInterval(createHeart, 800);
+</script>
+
+</body>
+</html>
